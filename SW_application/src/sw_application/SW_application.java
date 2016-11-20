@@ -12,10 +12,17 @@ import java.io.*;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.ontology.*;
 import org.apache.jena.shared.JenaException;
+import org.apache.jena.vocabulary.RDFS;
 import sw_application.Requests.AllStatements ; 
+import sw_application.Requests.AddStatement ;
+import sw_application.Requests.RemoveStatement ;
+import sw_application.Requests.SPARQL ;
+import sw_application.Requests.Search ;
+
+
 /**
  *
- * @author Administrator
+ * @author VTProjectTeam
  */
 public class SW_application extends Object {
 @SuppressWarnings( value = "unused" )
@@ -25,6 +32,14 @@ public class SW_application extends Object {
     public void run() {
     AllStatements.getAllStatements(inputFileName) ; 
     AllStatements.getAllClasses(inputFileName);
+    String query = "\n" +
+        "prefix rdfs: <"+RDFS.getURI()+">\n" +
+        "\n" +
+        "select distinct ?class where {\n" +
+        "  { ?class a rdfs:Class } union\n" +
+        "  { ?class rdfs:subClassOf|^rdfs:subClassOf [] }\n" +
+        "}";
+    SPARQL.runSPARQLRequest(query, inputFileName);
     }
     
     

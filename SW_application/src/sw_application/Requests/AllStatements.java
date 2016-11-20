@@ -24,7 +24,7 @@ import org.apache.jena.vocabulary.RDFS;
 
 /**
  *
- * @author Administrator
+ * @author VTProjectTeam
  */
 public class AllStatements {
 
