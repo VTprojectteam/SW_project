@@ -39,8 +39,9 @@ public class AllStatements {
         // read the RDF/XML file
         model.read(in, "");
         // list the statements in the Model
+        
         StmtIterator iter = model.listStatements();
-
+    
         // print out the predicate, subject and object of each statement
         while (iter.hasNext()) {
             Statement stmt = iter.nextStatement();  // get next statement
@@ -62,25 +63,16 @@ public class AllStatements {
         }
     }
     public static void getAllClasses (String fileName) {
-        Model model = ModelFactory.createDefaultModel();
-        InputStream in = FileManager.get().open(fileName);
-        if (in == null) {
-            throw new IllegalArgumentException("File: " + fileName + " not found");
-        }
-
-        // read the RDF/XML file
-        model.read(in, "");
-    String query = "\n" +
+        String query = "\n" +
         "prefix rdfs: <"+RDFS.getURI()+">\n" +
         "\n" +
         "select distinct ?class where {\n" +
         "  { ?class a rdfs:Class } union\n" +
         "  { ?class rdfs:subClassOf|^rdfs:subClassOf [] }\n" +
         "}";
-    ResultSet results;
-        results = QueryExecutionFactory.create( query,model).execSelect();
-    System.out.println( query );
-    ResultSetFormatter.out( results );
+        SPARQL.runSPARQLRequest(query, fileName);
+        
+    
     
     }
 }

@@ -40,6 +40,8 @@ public class SW_application extends Object {
         "  { ?class rdfs:subClassOf|^rdfs:subClassOf [] }\n" +
         "}";
     SPARQL.runSPARQLRequest(query, inputFileName);
+    String ClassName = "http://schema.org/MusicVideoObject" ;
+    //Search.getClassByName(ClassName, inputFileName);
     }
     
     
