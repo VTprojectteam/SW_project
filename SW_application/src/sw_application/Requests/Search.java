@@ -74,8 +74,9 @@ public static void getClassByName(String ClassName, String fileName) {
 
       "prefix rdfs: <"+RDFS.getURI()+">\n" +
         "\n" +
-        "select ?class where {\n" +
-        "?class rdf:about "  + ClassName + "\n" +
+        "select ?uri ?label \n where {\n" +
+        "?uri rdfs:label ?label ."  + " \n" +
+        "filter (?label =  "+ "\"" + ClassName + "\"" + ")\n" +
         "}";
     System.out.println( query );
     ResultSet results;
