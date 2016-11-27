@@ -18,6 +18,7 @@ import sw_application.Requests.AddStatement ;
 import sw_application.Requests.RemoveStatement ;
 import sw_application.Requests.SPARQL ;
 import sw_application.Requests.Search ;
+import sw_application.Requests.test_add ;
 
 
 /**
@@ -28,7 +29,9 @@ public class SW_application extends Object {
 @SuppressWarnings( value = "unused" )
   
     public static void main(String[] args) { new SW_application().run(); }
-    static final String  inputFileName = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\SW_project\\SW_application\\src\\sw_application\\schema_org.rdf" ;
+    static final String  inputFileName = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\SW_project\\SW_application\\src\\sw_application\\schema_org_reloaded.rdf" ;
+    static final String  outputFileName = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\SW_project\\SW_application\\src\\sw_application\\schema_out.rdf" ;
+
     public void run() {
     AllStatements.getAllStatements(inputFileName) ; 
     AllStatements.getAllClasses(inputFileName);
@@ -40,8 +43,9 @@ public class SW_application extends Object {
         "  { ?class rdfs:subClassOf|^rdfs:subClassOf [] }\n" +
         "}";
     SPARQL.runSPARQLRequest(query, inputFileName);
-    String ClassName = "http://schema.org/MusicVideoObject" ;
-    //Search.getClassByName(ClassName, inputFileName);
+    String ClassName = "Locksmith" ;
+    AddStatement.addStatement(outputFileName);
+    Search.getClassByName(ClassName, inputFileName);
     }
     
     
