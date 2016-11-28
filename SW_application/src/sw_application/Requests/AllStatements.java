@@ -41,6 +41,7 @@ public class AllStatements {
         // list the statements in the Model
         
         StmtIterator iter = model.listStatements();
+        
     
         // print out the predicate, subject and object of each statement
         while (iter.hasNext()) {
